@@ -1,0 +1,110 @@
+/* 参考 sulki-min.com：灰色噪点底、小字页头、作品底边对齐按真实比例排列 */
+:root {
+	--u: 0.78vw; /* 首页作品高度的单位，跟着窗口宽度缩放 */
+	--gap: 24px;
+	--pad: 24px;
+	--ink: #000;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font: 400 16px/20px 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+	color: var(--ink);
+	background: #e0e0e0 url('images/noise.png') repeat;
+	background-size: 240px 240px;
+}
+a { color: inherit; text-decoration: none; }
+h1, h3 { font-size: 16px; line-height: 20px; font-weight: 700; margin: 0; }
+p, ul { margin: 0; padding: 10px 0; }
+ul { list-style: none; }
+
+/* ---------- 页头 / 菜单 / 页脚 ---------- */
+header {
+	display: grid;
+	grid-template-columns: 32px 1fr auto;
+	align-items: center;
+	padding: var(--pad);
+	line-height: 16px;
+}
+.menu-btn { all: unset; cursor: pointer; font-size: 18px; }
+.right { text-align: right; }
+.heading { padding: 0 var(--pad); }
+
+.menu {
+	display: none;
+	padding: 8px var(--pad) 24px calc(var(--pad) + 32px);
+	gap: 48px;
+	flex-wrap: wrap;
+}
+.menu.open { display: flex; }
+.menu h3 { margin: 0 0 4px; }
+.menu ul { padding: 0; }
+.menu a:hover, .menu a:focus { background: #f0f0f0; }
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	padding: var(--pad);
+}
+
+/* ---------- 首页 ---------- */
+.works {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-end;
+	gap: var(--gap);
+	padding: var(--gap);
+	margin-top: auto;
+}
+.works a { display: block; line-height: 0; }
+.works img {
+	display: block;
+	height: calc(var(--h) * var(--u));
+	width: auto;
+}
+
+/* ---------- 详情页：左边封面、右边文字，下面是所有单页 ---------- */
+.entry {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: end;
+	gap: var(--gap);
+	padding: 12px var(--pad) 0;
+}
+.entry-cover img { display: block; height: 520px; max-width: 100%; width: auto; object-fit: contain; object-position: left bottom; }
+.entry-text { max-width: 640px; align-self: start; }
+.entry-text .specs li { padding: 0; }
+.entry-text .meta { padding-top: 10px; }
+.entry-text .meta li { padding: 0; }
+
+.pages {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-end;
+	gap: var(--gap);
+	padding: calc(var(--gap) * 2) var(--pad) var(--gap);
+}
+.pages figure { margin: 0; line-height: 0; }
+.pages img { display: block; height: 420px; width: auto; }
+
+.turn {
+	display: grid;
+	grid-template-columns: 24px 24px auto;
+	padding: 0 var(--pad) 12px;
+}
+
+@media (max-width: 1079px) {
+	.entry { grid-template-columns: 1fr; }
+	.entry-cover img { height: auto; width: min(100%, 420px); }
+}
+
+@media (max-width: 760px) {
+	:root { --u: 2.1vw; --gap: 16px; --pad: 16px; }
+	.pages figure { width: calc(50% - var(--gap) / 2); }
+	.pages img { height: auto; width: 100%; }
+}
