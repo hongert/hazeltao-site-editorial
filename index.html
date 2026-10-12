@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hazel Tao — Editorial</title>
+	<meta name="description" content="Editorial works by Honger (Hazel) Tao.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
+	<style>
+		/* 参考 sulki-min.com：灰色噪点底、小字页头、作品底边对齐按真实比例排成一排 */
+		:root {
+			--u: 0.78vw; /* 作品高度的单位，跟着窗口宽度缩放 */
+			--gap: 24px;
+			--pad: 24px;
+			--ink: #000;
+		}
+		* { box-sizing: border-box; }
+		html, body { height: 100%; }
+		body {
+			margin: 0;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			font: 400 16px/20px 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+			color: var(--ink);
+			background: #e0e0e0 url('images/noise.png') repeat;
+			background-size: 240px 240px;
+		}
+		a { color: inherit; text-decoration: none; }
+		h1 { font-size: 16px; line-height: 20px; font-weight: 700; margin: 0; }
+
+		header {
+			display: grid;
+			grid-template-columns: 32px 1fr auto;
+			align-items: center;
+			padding: var(--pad);
+			line-height: 16px;
+		}
+		.menu-btn { all: unset; cursor: pointer; font-size: 18px; }
+		.right { text-align: right; }
+		.heading { padding: 0 var(--pad); }
+
+		.menu {
+			display: none;
+			padding: 8px var(--pad) 24px calc(var(--pad) + 32px);
+			gap: 48px;
+			flex-wrap: wrap;
+		}
+		.menu.open { display: flex; }
+		.menu h3 { font-size: 16px; margin: 0 0 4px; }
+		.menu ul { list-style: none; margin: 0; padding: 0; }
+		.menu a:hover, .menu a:focus { background: #f0f0f0; }
+
+		.works {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-end;
+			gap: var(--gap);
+			padding: var(--gap);
+			margin-top: auto;
+		}
+		.works a { display: block; line-height: 0; }
+		.works img {
+			display: block;
+			height: calc(var(--h) * var(--u));
+			width: auto;
+		}
+
+		footer {
+			display: flex;
+			justify-content: space-between;
+			padding: var(--pad);
+		}
+
+		@media (max-width: 760px) {
+			:root { --u: 2.1vw; --gap: 16px; --pad: 16px; }
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<header>
+			<button class="menu-btn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+			<a href="./">Hazel Tao</a>
+			<a class="right" href="mailto:heizedesign@gmail.com">Contact</a>
+		</header>
+		<nav class="menu" id="menu">
+			<ul>
+				<h3>Editorial works</h3>
+				<li>Held Still, exhibition catalogue</li>
+				<li>Wuzhen Theater Festival, brochure</li>
+				<li>Pied Piper, lyric booklet</li>
+				<li>此岸, book</li>
+				<li>In and Around, brochure</li>
+				<li>Solserif, type specimen</li>
+				<li>Find Your Voice, editorial</li>
+			</ul>
+			<ul>
+				<h3>Contact</h3>
+				<li><a href="mailto:heizedesign@gmail.com">heizedesign@gmail.com</a></li>
+				<li><a href="https://www.instagram.com/sol.studioooo/">Instagram</a></li>
+			</ul>
+		</nav>
+		<div class="heading"><h1>Editorial works</h1></div>
+	</div>
+
+	<!-- 从左到右 1–7；--h 是每件作品的显示高度，按参考网站对应位置的大小设定 -->
+	<main class="works">
+		<a title="Held Still, exhibition catalogue cover"><img style="--h: 9.7" src="images/01-held-still-cover.png" width="1488" height="3200" alt="Held Still, catalogue cover"></a>
+		<a title="Wuzhen Theater Festival, brochure"><img style="--h: 11.1" src="images/02-wuzhen-brochure.png" width="762" height="838" alt="Wuzhen Theater Festival, brochure spread"></a>
+		<a title="Pied Piper, lyric booklet p. 5"><img style="--h: 10.5" src="images/03-pied-piper-lyrics-p5.png" width="5929" height="5347" alt="Pied Piper, lyric booklet page"></a>
+		<a title="此岸, spread"><img style="--h: 14.5" src="images/04-ci-an-spread.jpg" width="2669" height="1902" alt="此岸, book spread"></a>
+		<a title="In and Around, brochure cover"><img style="--h: 10.5" src="images/05-ats-brochure-cover.jpg" width="2475" height="3200" alt="In and Around, brochure cover"></a>
+		<a title="Solserif, type specimen"><img style="--h: 35.6" src="images/06-solserif.jpg" width="843" height="1131" alt="Solserif, type specimen"></a>
+		<a title="Find Your Voice, spread"><img style="--h: 11.7" src="images/07-find-your-voice-spread.jpg" width="1024" height="512" alt="Find Your Voice, editorial spread"></a>
+	</main>
+
+	<footer>
+		<div>© 2026 Hazel Tao</div>
+		<div>●</div>
+	</footer>
+
+	<script>
+		const btn = document.querySelector('.menu-btn');
+		const menu = document.getElementById('menu');
+		btn.addEventListener('click', () => {
+			const open = menu.classList.toggle('open');
+			btn.setAttribute('aria-expanded', open);
+		});
+	</script>
+</body>
+</html>
